@@ -667,7 +667,7 @@
           var options = merge(merge(defaultOptions, chartOptions), chart.options.library || {});
 
           var data = new google.visualization.DataTable();
-          data.addColumn({type; "string", id: "Name"});
+          data.addColumn({type: "string", id: "Name"});
 	  data.addColumn({type: "string", id: "Annotation"});
           data.addColumn({type: "date", id: "Start"});
           data.addColumn({type: "date", id: "End"});

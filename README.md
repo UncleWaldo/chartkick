@@ -60,7 +60,7 @@ Timeline
 * To add a fourth column:
   position a "string" at index 0 or 1 of the desired row.
   e.g.
-```
+```erb
   ["Washington", "President", "1789-04-29", "1797-03-03"]
 ```  
   This will result in "President" being displayed as the tooltip title
