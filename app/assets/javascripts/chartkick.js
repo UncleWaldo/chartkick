@@ -667,7 +667,8 @@
           var options = merge(merge(defaultOptions, chartOptions), chart.options.library || {});
 
           var data = new google.visualization.DataTable();
-          data.addColumn({type: "string", id: "Name"});
+          data.addColumn({type; "string", id: "Name"});
+	  data.addColumn({type: "string", id: "Annotation"});
           data.addColumn({type: "date", id: "Start"});
           data.addColumn({type: "date", id: "End"});
           data.addRows(chart.data);
@@ -746,8 +747,15 @@
   {
     var i;
     for (i = 0; i < data.length; i++) {
-      data[i][1] = toDate(data[i][1]);
-      data[i][2] = toDate(data[i][2]);
+        if (data[i].length < 4) {
+            data[i][3] = toDate(data[i][2]);
+            data[i][2] = toDate(data[i][1]);
+            data[i][1] = data[i][0];
+            data[i][0] = 'Dates';
+        } else {
+            data[i][2] = toDate(data[i][2]);
+            data[i][3] = toDate(data[i][3]);
+        }
     }
     return data;
   }
