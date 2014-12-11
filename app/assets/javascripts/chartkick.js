@@ -668,15 +668,46 @@
 
           var data = new google.visualization.DataTable();
           data.addColumn({type: "string", id: "Name"});
-	  data.addColumn({type: "string", id: "Annotation"});
+	      data.addColumn({type: "string", id: "Annotation"});
           data.addColumn({type: "date", id: "Start"});
           data.addColumn({type: "date", id: "End"});
           data.addRows(chart.data);
 
           chart.chart = new google.visualization.Timeline(chart.element);
+          function htmlTooltip(e){
+            var tdata;
+            var duration;
+            if(e.row != null){
 
-          resize(function () {
+                duration = Math.abs(data.getValue(e.row,2) - data.getValue(e.row,3));
+                duration = Math.ceil(duration / (1000 * 3600 * 24));
+
+                if(data.getValue(e.row,0) != 'Dates'){
+                    tdata = data.getValue(e.row,0);
+                    tdata += '<br />' + data.getValue(e.row,1);
+                } else {
+                    tdata = data.getValue(e.row,1);
+                }
+                tdata += '<br />Duration: ' + duration + ' days';
+                tdata = '<p>' + tdata + '</p>';
+
+                var css_options = {
+                    'line-height': "30px",
+                    'padding':"10px",
+                    'text-align':'left',
+                    'font-family':'"Inconsolata",monospace',
+                    'font-size':'14px',
+                    'color':'#515151',
+                    'max-width':'250px',
+                    'height': 'auto'
+                }
+                $(".google-visualization-tooltip").html(tdata).css(css_options);
+            }
+        }
+
+        resize(function () {
             chart.chart.draw(data, options);
+            google.visualization.events.addListener(chart.chart, 'onmouseover', htmlTooltip);
           });
         });
       };
