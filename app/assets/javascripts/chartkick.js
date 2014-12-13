@@ -668,7 +668,7 @@
 
           var data = new google.visualization.DataTable();
           data.addColumn({type: "string", id: "Name"});
-	      data.addColumn({type: "string", id: "Annotation"});
+		      data.addColumn({type: "string", id: "Annotation"});
           data.addColumn({type: "date", id: "Start"});
           data.addColumn({type: "date", id: "End"});
           data.addRows(chart.data);
@@ -693,7 +693,7 @@
 
                 var css_options = {
                     'line-height': "30px",
-                    'padding':"10px",
+                    'padding':"2px 10px",
                     'text-align':'left',
                     'font-family':'"Inconsolata",monospace',
                     'font-size':'14px',
